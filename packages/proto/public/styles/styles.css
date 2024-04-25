@@ -1,0 +1,80 @@
+
+body {
+    font-family: var(--font-family-body);
+    background-color: var(--color-background-page);
+    color: var(--color-text);
+    display: grid;  /* Use grid for the overall body layout */
+    grid-template-rows: auto 1fr auto; /* Header, content area, and footer */
+    min-height: 100vh;
+}
+
+header, footer {
+    background-color: var(--color-background-header);
+    color: var(--color-text-inverted);
+    padding: var(--size-spacing-medium);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-column: 1 / -1; /* Stretch across all columns */
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns for the first row of sections */
+    grid-template-rows: auto auto; /* Two rows for sections */
+    gap: var(--size-spacing-large);
+    padding: var(--size-spacing-large);
+}
+
+/* Specific layout adjustments for sections */
+section:nth-child(1), section:nth-child(2), section:nth-child(3) {
+    grid-row: 1; /* Place the first three sections in the first row */
+}
+
+section:nth-child(4) {
+    grid-column: 1 / -1; /* Make the fourth section span all columns in the second row */
+    grid-row: 2;
+}
+
+section {
+    padding: var(--size-spacing-medium);
+    border: 1px solid var(--color-border-control);
+    box-sizing: border-box;
+}
+
+article {
+    margin: var(--size-spacing-small);
+    padding: var(--size-spacing-small);
+    border: 1px solid var(--color-border-light);
+}
+
+button {
+    background-color: var(--color-accent);
+    color: var(--color-text-inverted);
+    border: none;
+    padding: var(--size-spacing-medium);
+    cursor: pointer;
+    border-radius: var(--size-radius-medium);
+}
+
+a {
+    color: var(--color-link);
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-display);
+    color: var(--color-text-heading);
+}
+
+:focus {
+    outline: 2px dashed var(--color-accent);
+    outline-offset: 2px;
+}
+
+footer {
+    text-align: center;
+    padding: var(--size-spacing-medium);
+    background-color: var(--color-text);
+    color: var(--color-text-inverted);
+}

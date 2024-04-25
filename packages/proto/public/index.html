@@ -1,70 +1,144 @@
-<!-- <article style="background-color: beige;">
-    <header>
-        <h1>Music Discovery</h1>
-    </header>
-    <section class="Review Playlist">
-        <h2>Review Playlist</h2>
-        <ul>
-            <li><a href="analyze.html">Analyze Playlist</a></li>
-            <li><a href="reorder.html">Filter and Organize</a></li>
-            <li><a href="create.html">Create New Playlists</a></li>
-        </ul>
-    </section>
-    <section class="General">
-        <h2>General Statistics</h2>
-        <ul>
-            <li><a href="top_features.html">Top Music Features</a></li>
-            <li><a href="trend.html">Overall Trends</a></li>
-        </ul>
-    </section>
-    
-</article> -->
-    
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playlist Explorer</title>
-    <style>
-        body {
-            background-color: beige; 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/tokens.css">
+    <link rel="stylesheet" href="./styles/pages.css">
+    <script type="module" src="./js/web-com-dynamic.js"></script>
+    <script type="module">
+        import { relayEvent } from "/js/relay-event.js"; 
+        window.relayEvent = relayEvent;
+    </script>
+    <script>
+        const parser = new DOMParser();
+  
+        function loadDestination(href, container) {
+          console.log("Loading Destination:", href, container);
+  
+          fetch(href)
+            .then((response) => {
+              if (response.status !== 200) {
+                throw `Status: ${response.status}`;
+              }
+              return response.text();
+            })
+            .then((htmlString) => {
+              const doc = parser.parseFromString(
+                htmlString,
+                "text/html"
+              );
+  
+              console.log("Destination Document:", doc);
+              const article = doc.body.firstChild;
+              container.replaceChildren(article);
+            })
+            .catch((error) => {
+              const message = document.createTextNode(
+                `Failed to fetch ${href}: ${error}`
+              );
+  
+              container.append(message);
+            });
         }
-        h1, h2 {
-            background-color: #228B22;
-            color: white; 
-            font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif; 
-            font-style: normal;  
-            line-height: 2rem;
+      </script>
+      <script type="module">
+        const page = document.body;
+  
+        page.addEventListener("change", (event) => {
+            const checked = event.target.checked;
+            page.classList.toggle("dark-mode", checked);
+        });
+      </script>
+        <script type="module">
+        function relayEvent(event, customType, detail) {
+            const relay = event.currentTarget;
+            const customEvent = new CustomEvent(customType, {
+            bubbles: true,
+            detail
+        });
+        relay.dispatchEvent(customEvent);
+        event.stopPropagation();
         }
-        h1{
-            font-size: 1.5rem;
-        }
-        h2{
-            font-size: 1rem;
-        }
+        </script>
+      
 
-    </style>
+  
 </head>
-<body>
-    <article>
-        <header>
+<body class="page">
+    <header>
+        <div class="header-content">
             <h1>Music Discovery</h1>
-        </header>
-        <section class="Review Playlist">
-            <h2>Review Playlist</h2>
+            <p>A tool for your Spotify playlists</p>
+        </div>
+        <nav>
             <ul>
-                <li><a href="analyze.html">Analyze Playlist</a></li>
-                <li><a href="reorder.html">Filter and Organize</a></li>
-                <li><a href="create.html">Create New Playlists</a></li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+                <li><label><input type="checkbox" autocomplete="off" />Dark mode</label></li>
             </ul>
+        </nav>
+        <div class="header-image">
+            <img src="./images/music_note.png" alt="Descriptive Alt Text">
+        </div>
+    </header>
+    
+    <main>
+        <section class="right-top">
+            <h2>Welcome to Your Spotify Analyzer</h2>
+            <p>Connect your Spotify account and get insights into your playlists.</p>
+            <button onclick="connectSpotify()">Connect to Spotify</button>
         </section>
-        <section class="General">
-            <h2>General Statistics</h2>
-            <ul>
-                <li><a href="top_features.html">Top Music Features</a></li>
-                <li><a href="trend.html">Overall Trends</a></li>
-            </ul>
+        
+        <section class="right-bottom">
+            <h2>Dashboard</h2>
+            <label for="playlistURL">Enter Playlist URL:</label>
+            <input type="url" id="playlistURL" name="playlistURL" placeholder="https://example.com/playlist" onchange="loadPlaylist(this.value)">
+
+            <html-fragment href="top_features.html">
+            <h4><a href="#" onclick="relayEvent(event, 'html-fragment:open')">
+                Top Features
+              </a></h4>
+            </html-fragment>
+
+            <article id="moodChart">
+            <!-- A chart of mood analytics will be displayed here -->
+            </article>
         </section>
-    </article>
+        
+        <section class="left-full">
+            <h2>Detailed Analysis</h2>
+            <article id="genreChart">
+                <ul>
+                    <li><a onclick="loadDestination('./analyze.html', event.target.closest('article'))">Analyze Playlist</a>
+                    </li>
+                    <li><a href="reorder.html">Filter and Organize</a></li>
+                    <li><a href="create.html">Create New Playlists</a></li>
+                </ul>
+            </article>
+        </section>
+        
+        <section class="full-span">
+            <h2>Organize Your Playlists</h2>
+            <button onclick="editPlaylist()">Edit Current Playlist</button>
+            <article id="editablePlaylist">
+                <!-- Editable playlist interface will be here -->
+            </article>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Copyright &copy; 2024 Music Discovery</p>
+    </footer>
+
 </body>
 </html>
+
