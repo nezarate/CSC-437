@@ -1,11 +1,27 @@
-export function relayEvent(event, customType, detail) {
-    const relay = event.currentTarget;
-    const customEvent = new CustomEvent(customType, {
-      bubbles: true,
-      detail
-    });
+// export function relayEvent(event, customType, detail) {
+//     const relay = event.currentTarget;
+//     const customEvent = new CustomEvent(customType, {
+//       bubbles: true,
+//       detail
+//     });
   
-    relay.dispatchEvent(customEvent);
-    //event.stopPropagation();
-    event.preventDefault();
-  }
+//     relay.dispatchEvent(customEvent);
+//     //event.stopPropagation();
+//     event.preventDefault();
+//   }
+export function relayEvent(event, customType, detail) {
+  const relay = event.currentTarget;
+  const customEvent = new CustomEvent(customType, {
+    bubbles: true,
+    composed: true,
+    detail
+  });
+
+  console.log(
+    `Relaying event from ${event.type}:`,
+    customEvent
+  );
+
+  relay.dispatchEvent(customEvent);
+  event.stopPropagation();
+}

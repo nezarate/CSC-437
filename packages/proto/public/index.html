@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,27 @@
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/tokens.css">
     <link rel="stylesheet" href="./styles/pages.css">
+    <link rel="stylesheet" href="/styles/form.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@calpoly/mustang": "/node_modules/@calpoly/mustang/dist/mustang.mjs"
+        }
+      }
+    </script>
+    <script type="module" src="./js/song-header.js"></script>
+    <script type="module" src="./js/drop-down.js"></script>
+    <script type="module" src="./js/restful-form.js"></script>
     <script type="module" src="./js/web-com-dynamic.js"></script>
+    <script type="module" src="./js/json.js"></script>
+    <script type="module" src="./js/input-array.js"></script>
+    <script type="module" src="/js/profile-viewer.js"></script>
+    <script type="module">
+      import { define, Auth } from "@calpoly/mustang";
+    
+      define({ "mu-auth": Auth.Provider });
+    </script>
+
     <script type="module">
         import { relayEvent } from "/js/relay-event.js"; 
         window.relayEvent = relayEvent;
@@ -72,6 +91,67 @@
   
 </head>
 <body class="page">
+  <!-- <a href="#" onclick="relayEvent(event, 'auth:message', ['auth/signout'])">
+    Sign out
+  </a> -->
+  <mu-auth provides="blazing:auth" redirect="../login.html">
+    <song-header></song-header>
+    <main>
+      <profile-view src="/api/profiles/CHROMA"> </profile-view>
+    </main>
+  </mu-auth>
+  <json-object src="/api/profiles/CHROMA">
+    <a href="#" onclick="relayEvent(event, 'json-object:open')">
+      CHROMA
+    </a>
+  </json-object>
+  <main>
+    <!-- <profile-view>
+      <span slot="name">CHROMA</span>
+      <ul slot="artists">
+        <li>B.D.B.</li>
+        <li>BICEP</li>
+        <li>Benjamin Damage</li>
+      </ul>
+      <span slot="album">CHROMA</span>
+      <span slot="genre">Dance</span>
+      <span slot="duration_ms">100</span>
+      <span slot="popularity">90</span>
+    </profile-view> -->
+    <profile-view src="/api/profiles/CHROMA"> </profile-view>
+  </main>
+  <!-- <restful-form slot="form" src="/api/profiles/CHROMA"> -->
+    <!-- <form autocomplete="off"> -->
+    <!-- <label>
+      <span>Song Name</span>
+      <input name="name" disabled/>
+    </label>
+    <label>
+      <span>Artists</span>
+      <input-array name="artists">
+        <span slot="label-add">Add an artist</span>
+      </input-array>
+    </label>
+    <label>
+      <span>Album</span>
+      <input name="album" />
+    </label>
+    <label>
+      <span>Genre</span>
+      <input name="genre" />
+    </label>
+    <label>
+      <span>Song Duration (Seconds)</span>
+      <input type="number" name="duration_ms" />
+    </label>
+    <label>
+      <span>Popularity</span>
+      <input type="number" name="popularity" />
+    </label>
+    <button type="submit">Submit</button> -->
+    <!-- </form> -->
+    <!-- <button onclick="relayEvent(event,'restful-form:delete')">Delete this Profile</button>
+  </restful-form> -->
     <header>
         <div class="header-content">
             <h1>Music Discovery</h1>
