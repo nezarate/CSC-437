@@ -23,29 +23,57 @@
         }
       }
     </script>
-    <script type="module" src="/js/login-form.js"></script>
     <script type="module">
       import { define, Auth } from "@calpoly/mustang";
 
       define({ "mu-auth": Auth.Provider });
     </script>
+     <script type="module" src="/js/login-form.js"></script>
     <style>
       .page {
         height: 100vh;
-        grid-template-rows: 1fr fit-content(1fr) 1fr;
+        display: grid;
+        grid-template-columns: 1fr minmax(300px, 1fr) 1fr;
       }
       main.card {
         align-self: center;
-        grid-column: 3 / span 4;
+      }
+      h2,
+      p {
+        margin: 0;
+      }
+      mu-auth {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-column: 2;
       }
       h2 {
-        grid-column: start / end;
-        align-self: end;
+        text-align: center;
+        margin-bottom: var(--size-spacing-medium);
       }
       p {
-        grid-column: 2 / -2;
         text-align: center;
+        margin-top: var(--size-spacing-medium);
       }
+
+    
+      /* .page {
+            height: 100vh;
+            grid-template-rows: 1fr fit-content(1fr) 1fr;
+          }
+          main.card {
+            align-self: center;
+            grid-column: 3 / span 4;
+          }
+          h2 {
+            grid-column: start / end;
+            align-self: end;
+          }
+          p {
+            grid-column: 2 / -2;
+            text-align: center;
+          } */
     </style>
   </head>
   <body class="page">
