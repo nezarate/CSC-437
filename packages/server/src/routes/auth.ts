@@ -46,21 +46,25 @@ router.post("/login", (req: Request, res: Response) => {
 
 function generateAccessToken(
     username: string
-): Promise<String> {
+  ): Promise<String> {
+    console.log("Generating token for", username);
     return new Promise((resolve, reject) => {
-        jwt.sign(
-            { username: username },
-            TOKEN_SECRET,
-            { expiresIn: "1d" },
-            (error, token) => {
-                if (error) reject(error);
-                else resolve(token as string);
-            }
-        );
+      jwt.sign(
+        { username: username },
+        TOKEN_SECRET,
+        { expiresIn: "1d" },
+        (error, token) => {
+          if (error) reject(error);
+          else {
+            console.log("Token is", token);
+            resolve(token as string);
+          }
+        }
+      );
     });
-}
+  }
 
-export function authenticateUser(
+  export function authenticateUser(
     req: Request,
     res: Response,
     next: NextFunction
@@ -69,12 +73,17 @@ export function authenticateUser(
     //Getting the 2nd part of the auth header (the token)
     const token = authHeader && authHeader.split(" ")[1];
   
+    console.log("Authenticating request", req.headers, token);
     if (!token) {
       res.status(401).end();
     } else {
       jwt.verify(token, TOKEN_SECRET, (error, decoded) => {
-        if (decoded) next();
-        else res.status(403).end();
+        if (decoded) {
+          console.log("Decoded token", decoded);
+          next();
+        } else {
+          res.status(401).end();
+        }
       });
     }
   }

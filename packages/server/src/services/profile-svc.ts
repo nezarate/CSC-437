@@ -1,5 +1,5 @@
 // src/services/profile-svc.ts
-import { Schema, Model, Document, model } from "mongoose";
+import { Schema,model } from "mongoose";
 import { Profile } from "../models/profile";
 
 

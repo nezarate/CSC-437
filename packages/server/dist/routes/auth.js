@@ -59,6 +59,7 @@ router.post("/login", (req, res) => {
   }
 });
 function generateAccessToken(username) {
+  console.log("Generating token for", username);
   return new Promise((resolve, reject) => {
     import_jsonwebtoken.default.sign(
       { username },
@@ -67,8 +68,10 @@ function generateAccessToken(username) {
       (error, token) => {
         if (error)
           reject(error);
-        else
+        else {
+          console.log("Token is", token);
           resolve(token);
+        }
       }
     );
   });
@@ -76,14 +79,17 @@ function generateAccessToken(username) {
 function authenticateUser(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
+  console.log("Authenticating request", req.headers, token);
   if (!token) {
     res.status(401).end();
   } else {
     import_jsonwebtoken.default.verify(token, TOKEN_SECRET, (error, decoded) => {
-      if (decoded)
+      if (decoded) {
+        console.log("Decoded token", decoded);
         next();
-      else
-        res.status(403).end();
+      } else {
+        res.status(401).end();
+      }
     });
   }
 }

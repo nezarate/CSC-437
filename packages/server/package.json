@@ -2,12 +2,14 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "/src/index.ts",
   "scripts": {
-    "dev": "cross-env STATIC=../proto/public npx nodemon",
+    "dev": "cross-env STATIC=../proto/public nodemon",
     "build": "npx etsc",
-    "start": "cross-env STATIC=../proto/public node dist/index.js",
-    "check": "npx tsc --noEmit"
+    "start": "npm run build && npm run start:node",
+    "start:node": "node dist/index.js",
+    "start:proto": "cross-env STATIC=../proto/public npm run start",
+    "check": "tsc --noEmit"
   },
   "author": "",
   "license": "ISC",

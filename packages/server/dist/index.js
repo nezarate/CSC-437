@@ -32,7 +32,6 @@ const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
 app.use(import_express.default.static(staticDir));
 app.use(import_express.default.json());
-app.use("/api/profiles", import_auth.authenticateUser, import_profiles.default);
 app.use("/auth", import_auth.default);
 const nodeModules = import_path.default.resolve(
   __dirname,
@@ -40,6 +39,7 @@ const nodeModules = import_path.default.resolve(
 );
 console.log("Serving NPM packages from", nodeModules);
 app.use("/node_modules", import_express.default.static(nodeModules));
+app.use("/api/profiles", import_auth.authenticateUser, import_profiles.default);
 app.get("/hello", (_, res) => {
   res.send(
     `<h1>Hello!</h1>
