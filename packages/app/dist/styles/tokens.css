@@ -1,0 +1,51 @@
+:root {
+    --size-icon-normal: 1em;
+    --size-icon-large: 4rem;
+  
+    --size-spacing-small: 0.25rem;
+    --size-spacing-medium: 0.5rem;
+    --size-spacing-large: 1rem;
+    --size-spacing-xlarge: 2rem;
+  
+    --size-radius-medium: var(--size-spacing-medium);
+  
+    --size-type-body: 1rem;
+    --size-type-mlarge: 1.25rem;
+    --size-type-large: 1.5rem;
+    --size-type-xlarge: 2rem;
+    --size-type-xxlarge: 2.5rem;
+  
+    --color-accent: rgb(128 0 0);
+    --color-background-header: var(--color-accent);
+    --color-background-page: rgb(245, 245, 220);
+    --color-border-control: #999;
+    --color-link-inverted: rgb(214,181,117);
+    --color-link: var(--color-accent);
+    --color-text: rgb(51 51 51);
+    --color-text-heading: var(--color-accent);
+    --color-text-inverted: rgb(255 255 255);
+    --color-button: rgb(128 0 0);
+    --color-button-text: rgb(255 255 255);
+  
+    --font-family-body: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    --font-family-display: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;
+  
+    --font-line-height-body: 1.5;
+    --font-line-height-display: 1.125;
+  
+    --font-weight-light: 200;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+  }
+
+  body.dark-mode {
+    --color-background-page: rgb(128,128,128);
+    --color-button: rgb(245, 245, 220);
+    --color-button-text: black;
+    --color-text: rgb(94, 25, 20);
+    --color-border-control: rgb(245, 245, 220);
+    /* --color-text: var(--color-accent); */
+    /* --color-accent: var(--color-accent-inverted); */
+    /* --color-text-control: rgb(51 51 51);
+    --color-text-control-inverted: var(--color-background-page); */
+  }

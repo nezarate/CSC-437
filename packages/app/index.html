@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playlist Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+  <script type="module" src="/src/main"></script>
+  <script type="module">
+    function toggleDarkMode(page, checked) {
+      page.classList.toggle("dark-mode", checked);
+    }
+
+    document.body.addEventListener("dark-mode", (event) =>
+      toggleDarkMode(
+        event.currentTarget,
+        event.detail.checked
+      )
+    );
+  </script>
+
+  <!-- <script type="module">
+    import { define, Auth, Events } from "@calpoly/mustang";
+      import { SongHeaderElement } from "/src/components/song-header";
+    
+      define({
+        "mu-auth": Auth.Provider,
+        "song-header": SongHeaderElement
+      });
+    
+      window.relayEvent = Events.relay;
+    </script>
+    
+    <script type="module">
+      import { define, Auth, Events } from "@calpoly/mustang";
+      import { SongHeaderElement } from "/src/components/song-header";
+    
+      define({
+        "mu-auth": Auth.Provider,
+        "song-header": SongHeaderElement
+      });
+    
+      window.relayEvent = Events.relay;
+    </script>
+
+      <script type="module">
+        const page = document.body;
+
+        page.addEventListener("change", (event) => {
+          const checked = event.target.checked;
+          page.classList.toggle("dark-mode", checked);
+        });
+      </script>
+      <script type="module">
+        function relayEvent(event, customType, detail) {
+          const relay = event.currentTarget;
+          const customEvent = new CustomEvent(customType, {
+            bubbles: true,
+            detail
+          });
+          relay.dispatchEvent(customEvent);
+          event.stopPropagation();
+        }
+      </script>
+
+      <style>
+        mu-auth {
+          display: contents;
+        }
+      </style> -->
+
+
+
+</head>
+
+<body class="page">
+  <mu-history provides="blazing:history">
+    <mu-auth provides="blazing:auth" redirect="/login.html">
+      <mu-store provides="blazing:model">
+        <article class="page">
+          <song-header></song-header>
+          <mu-switch></mu-switch>
+        </article>
+      </mu-store>
+    </mu-auth>
+  </mu-history>
+</body>
+
+</html>
