@@ -1,5 +1,4 @@
 
-import { define } from "@calpoly/mustang";
 import { css, html, LitElement } from "lit";
 import { property, state } from "lit/decorators.js";
 import { Profile } from "server/models";

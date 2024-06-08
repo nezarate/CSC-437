@@ -6,7 +6,7 @@ import {
   View
 } from "@calpoly/mustang";
 import { css, html, LitElement } from "lit";
-import { property, state } from "lit/decorators.js";
+import { property} from "lit/decorators.js";
 import { Profile } from "server/models";
 import resetStyles from "../css/reset";
 import { Msg } from "../messages";

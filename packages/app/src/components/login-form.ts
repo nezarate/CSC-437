@@ -1,5 +1,5 @@
 import { define, Events, Rest } from "@calpoly/mustang";
-import { html, LitElement, css } from "lit";
+import { html, LitElement} from "lit";
 
 
 define({ "restful-form": Rest.FormElement });
