@@ -127,7 +127,7 @@ class ProfileEditor extends LitElement {
           </label>
           <label>
           <span>Artists</span>
-          <input-array disabled name="artisits">
+          <input-array name="artists">
             <span slot="label-add">Add an artist</span>
           </input-array>
         </label>

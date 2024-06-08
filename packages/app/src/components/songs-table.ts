@@ -128,7 +128,7 @@ export class SongsTableElement extends LitElement {
               <th>Artist</th>
               <th>Album</th>
               <th>Genre</th>
-              <th>Duration (ms)</th>
+              <th>Duration (sec)</th>
               <th>Popularity</th>
             </tr>
           </thead>

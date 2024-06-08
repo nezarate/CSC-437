@@ -29,6 +29,7 @@ class AboutView extends LitElement {
           <h1>About Us</h1>
           <p>
             This is a simple about page for our application. We are creating a single page application for CSC 437. This project focuses on analyzing and organizing song data.
+            Future directions would include the option to link your spotify account to have access to all playlists or to paste the URL of a single Spotify playlist to analyze the data.
           </p>
         </section>
       `;

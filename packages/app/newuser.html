@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -66,4 +66,112 @@
       </p>
     </mu-auth>
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,400;0,700;1,700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <link rel="stylesheet" href="/styles/page.css" />
+  <link rel="stylesheet" href="/styles/form.css" />
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { SignupFormElement } from "/src/components/signup-form";
+
+    define({
+      "mu-auth": Auth.Provider,
+      "signup-form": SignupFormElement
+    });
+  </script>
+  <style>
+    body {
+      font-family: var(--font-family-body);
+      background-color: var(--color-background-page);
+      color: var(--color-text);
+    }
+
+    .page {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+      gap: var(--size-spacing-medium);
+    }
+
+    header {
+      grid-column: 1 / -1; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: var(--size-spacing-medium);
+      background-color: rgb(128, 0, 0); /* Dark Red */
+      color: rgb(214, 181, 117); /* Gold */
+      flex-wrap: wrap;
+    }
+
+    header h2 {
+      margin: 0;
+    }
+
+    main.card {
+      align-self: center;
+      grid-column: 2 / span 4;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    input {
+      padding: 8px;
+      margin-top: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    p {
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+  </style>
+</head>
+<body class="page">
+  <mu-auth>
+    <header>
+      <h2>New User Registration</h2>
+    </header>
+    <main class="card">
+      <signup-form>
+        <label>
+          <span>Username:</span>
+          <input name="username" autocomplete="off" />
+        </label>
+        <label>
+          <span>Password:</span>
+          <input type="password" name="password" />
+        </label>
+      </signup-form>
+    </main>
+    <p>
+      Already have an account and want to
+      <a href="./login.html">Log In</a>
+      instead?
+    </p>
+  </mu-auth>
+</body>
 </html>

@@ -7,6 +7,7 @@ import { SongStatsElement } from "../components/song-stats";
 import { Msg } from "../messages";
 import { Model } from "../model";
 
+
 define({
   "songs-table": SongsTableElement,
   "song-stats": SongStatsElement
@@ -119,6 +120,8 @@ export class TourViewElement extends View<Model, Msg> {
             <h2>Welcome to Your Spotify Analyzer</h2>
             <p>Connect your Spotify account and get insights into your playlists.</p>
             <button @click="${this.connectSpotify}">Connect to Spotify</button>
+            <p>Click here to try editing a song profile!</p>
+            <a href="/app/profile/CHROMA">View CHROMA Profile</a>
           </section>
           <section class="left-top">
             <h2>Dashboard</h2>
